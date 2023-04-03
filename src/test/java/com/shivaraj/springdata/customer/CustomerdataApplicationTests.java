@@ -3,6 +3,9 @@ package com.shivaraj.springdata.customer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -52,5 +55,21 @@ class CustomerdataApplicationTests {
 		System.out.println("Total records: " +repository.count());
 	}
 	
+	@Test
+	public void testFindByEmailAndName() {
+		List<Customer> customer = repository.findByEmailAndName("john_doe@gmail.com", "John");
+		customer.forEach(c -> System.out.println(c.getName()));
+	}
+	@Test
+	public void testFindByEmailLike() {
+		List<Customer> customer = repository.findByEmailLike("john_doe@gmai");
+		customer.forEach(c -> System.out.println(c.getName()));
+	}
+	
+	@Test
+	public void testFindByIdsIn() {
+		List<Customer> customer = repository.findByIdIn(Arrays.asList(1,2,3));
+		customer.forEach(c -> System.out.println(c.getName()));
+	}
 
 }
