@@ -3,6 +3,8 @@ package com.shivaraj.springdata.customer.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -11,12 +13,12 @@ import jakarta.persistence.Table;
 public class Customer {
 
 	@Id
-	@Column	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String name;
+	
 	private String email;
-	
-	
 
 	public Customer() {
 
@@ -24,7 +26,7 @@ public class Customer {
 
 	public Customer(int id, String name, String email) {
 		super();
-		this.id = id;
+		this.id=id;
 		this.name = name;
 		this.email = email;
 	}
